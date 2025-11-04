@@ -169,3 +169,53 @@ The `Blog` model should contain the following fields:
 - This action is restricted to authenticated users only.
 - The endpoint should validate user authorization before applying any changes to ensure that only the blog’s owner can update it.
 - Endpoint: `DELETE /blogs/:blogId`
+
+## Profile
+### Get user profile
+- Implement an endpoint to retrieve a user's profile details.
+- The response should include the following information:
+    - firstName
+    - lastName
+    - userName
+    - emailAddress
+- This action is restricted to authenticated users only.
+- Endpoint: `GET /profile`
+
+### Update user profile
+- Implement an endpoint to update a user's profile details.
+- The following are the details that should be updated:
+    - firstName
+    - lastName
+    - userName
+    - emailAddress
+- If the user provides a userName or emailAddress that is already in use, provide a friendly error message such as: `The username you have provided is already associated by another account`
+- This action is restricted to authenticated users only.
+- Endpoint: `PATCH /profile`
+
+### Get blogs by a user
+- Implement an endpoint to retrieve all blogs written by the user.
+- Each blog should include the following details:
+    - title
+    - synopsis
+    - featuredImageUrl
+    - createdAt
+- The endpoint should only return blogs that have not been deleted.
+- This action is restricted to authenticated users only.
+- Endpoint: `GET /profile/blogs`
+
+### Get user's trash
+- Implement an endpoint that retrieves all the blogs deleted by a user.
+- Each blog should include the following details:
+    - title
+    - synopsis
+    - featuredImageUrl
+    - createdAt
+- This action is restricted to authenticated users only.
+- Endpoint: `GET /profile/trash`
+
+### Update user's password
+- Implement an endpoint to update a user's password.
+- The user must provide their current password and a new password.
+- If the provided current password does not match the one stored in the database, do not update the password and return an appropriate error message.
+- If the passwords match, hash the new password and update the user's password with the hashed value.
+- Endpoint `PATCH /auth/password`
